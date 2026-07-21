@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="cupcake">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Samiya! 🎀</title>
+  
+  <!-- Tailwind CSS & DaisyUI CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <style>
+    /* Hello Kitty Themed Animated Background Pattern */
+    body {
+      background-color: #fff0f5;
+      background-image: 
+        radial-gradient(#ffb6c1 1.5px, transparent 1.5px), 
+        radial-gradient(#ffb6c1 1.5px, #fff0f5 1.5px);
+      background-size: 60px 60px;
+      background-position: 0 0, 30px 30px;
+    }
+
+    /* Floating Animations */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-12px) rotate(3deg); }
+    }
+    .animate-float {
+      animation: float 3.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 15px rgba(255, 182, 193, 0.6); }
+      50% { box-shadow: 0 0 25px rgba(255, 105, 180, 0.9); }
+    }
+    .hello-kitty-glow {
+      animation: pulse-glow 3s infinite;
+    }
+  </style>
+</head>
+<body class="min-h-screen font-sans text-base-content selection:bg-pink-300">
+
+  <!-- FLOATING HELLO KITTY BOW DECORATIONS -->
+  <div class="fixed top-6 left-6 text-4xl opacity-40 animate-float pointer-events-none z-10">🎀</div>
+  <div class="fixed top-12 right-10 text-3xl opacity-40 animate-float pointer-events-none z-10" style="animation-delay: 1s;">✨</div>
+  <div class="fixed bottom-10 left-10 text-3xl opacity-40 animate-float pointer-events-none z-10" style="animation-delay: 1.5s;">🐱</div>
+  <div class="fixed bottom-8 right-8 text-4xl opacity-40 animate-float pointer-events-none z-10" style="animation-delay: 0.5s;">🎀</div>
+
+  <!-- TOP LIVE DIGITAL CLOCK TIMER -->
+  <div class="w-full bg-pink-200/80 backdrop-blur-sm text-pink-900 py-2 text-center text-sm font-semibold border-b border-pink-300 flex justify-center items-center gap-2 shadow-sm">
+    <i class="fa-solid fa-clock text-pink-600"></i> Current Time: <span id="live-timer" class="font-mono text-base font-bold text-pink-700">00:00:00 AM</span> 🎀
+  </div>
+
+  <!-- HERO SECTION -->
+  <div class="hero min-h-[65vh] relative overflow-hidden">
+    <div class="hero-content text-center py-8">
+      <div class="max-w-xl">
+        
+        <!-- Hello Kitty Badge Header -->
+        <div class="inline-flex items-center gap-2 bg-white/90 border-2 border-pink-300 text-pink-600 rounded-full px-4 py-1 text-sm font-bold shadow-sm mb-4 animate-float">
+          <span>🎀</span> Samiya's Birthday Countdown <span>🎀</span>
+        </div>
+
+        <h1 class="text-5xl sm:text-6xl font-extrabold text-pink-600 mb-2 drop-shadow-sm">
+          Happy Birthday, <br/>
+          <span class="text-pink-500 underline decoration-pink-300">Samiya!</span> 🐾
+        </h1>
+
+        <p class="py-4 text-base sm:text-lg text-pink-900/80 leading-relaxed font-medium">
+          Counting down every special second until August 17th! 💖
+        </p>
+
+        <!-- COUNTDOWN TIMER -->
+        <div class="flex justify-center gap-3 sm:gap-4 my-6 text-center">
+          <div class="flex flex-col p-3 bg-white/90 border-2 border-pink-200 rounded-2xl shadow-md w-20 hello-kitty-glow">
+            <span class="font-mono text-3xl text-pink-600 font-extrabold" id="days">00</span>
+            <span class="text-xs mt-1 text-pink-400 font-bold uppercase">Days</span>
+          </div>
+          <div class="flex flex-col p-3 bg-white/90 border-2 border-pink-200 rounded-2xl shadow-md w-20 hello-kitty-glow">
+            <span class="font-mono text-3xl text-pink-600 font-extrabold" id="hours">00</span>
+            <span class="text-xs mt-1 text-pink-400 font-bold uppercase">Hours</span>
+          </div>
+          <div class="flex flex-col p-3 bg-white/90 border-2 border-pink-200 rounded-2xl shadow-md w-20 hello-kitty-glow">
+            <span class="font-mono text-3xl text-pink-600 font-extrabold" id="minutes">00</span>
+            <span class="text-xs mt-1 text-pink-400 font-bold uppercase">Mins</span>
+          </div>
+          <div class="flex flex-col p-3 bg-white/90 border-2 border-pink-200 rounded-2xl shadow-md w-20 hello-kitty-glow">
+            <span class="font-mono text-3xl text-pink-600 font-extrabold" id="seconds">00</span>
+            <span class="text-xs mt-1 text-pink-400 font-bold uppercase">Secs</span>
+          </div>
+        </div>
+
+        <!-- CELEBRATE BUTTON WITH MUSIC -->
+        <button onclick="triggerCelebration()" class="btn bg-pink-500 hover:bg-pink-600 text-white border-none shadow-lg px-8 h-auto py-3.5 text-base rounded-full inline-flex items-center justify-center gap-2 whitespace-nowrap">
+          <span>🎀</span> Play Tune & Sprinkle Magic! ✨
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SURPRISE CARDS SECTION -->
+  <section class="max-w-4xl mx-auto px-4 py-8">
+    <h2 class="text-2xl sm:text-3xl font-extrabold text-center mb-8 text-pink-600 flex justify-center items-center gap-2">
+      <span>🎀</span> Sweet Thoughts For Samiya <span>🎀</span>
+    </h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      
+      <!-- Card 1 -->
+      <div class="card bg-white/90 shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-pink-200 rounded-3xl">
+        <div class="card-body items-center text-center">
+          <div class="w-14 h-14 rounded-full bg-pink-100 flex items-center justify-center text-pink-500 text-2xl mb-1 border border-pink-300">
+            🐱
+          </div>
+          <h3 class="card-title text-lg text-pink-600 font-bold">Cutest Smile</h3>
+          <p class="text-sm text-pink-900/70">Your smile is literally as sweet and warm as Hello Kitty's world! It brightens up my whole day.</p>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="card bg-white/90 shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-pink-200 rounded-3xl">
+        <div class="card-body items-center text-center">
+          <div class="w-14 h-14 rounded-full bg-pink-100 flex items-center justify-center text-pink-500 text-2xl mb-1 border border-pink-300">
+            🎀
+          </div>
+          <h3 class="card-title text-lg text-pink-600 font-bold">Kind Heart</h3>
+          <p class="text-sm text-pink-900/70">Thank you for bringing so much brightness, laughter, and cute moments into my life every single day.</p>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="card bg-white/90 shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-pink-200 rounded-3xl">
+        <div class="card-body items-center text-center">
+          <div class="w-14 h-14 rounded-full bg-pink-100 flex items-center justify-center text-pink-500 text-2xl mb-1 border border-pink-300">
+            ✨
+          </div>
+          <h3 class="card-title text-lg text-pink-600 font-bold">My Favorite Person</h3>
+          <p class="text-sm text-pink-900/70">Wishing you a birthday full of endless treats, giant hugs, and all the love in the universe!</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- INTERACTIVE LETTER / MODAL SECTION -->
+  <section class="max-w-xl mx-auto px-4 py-8 text-center">
+    <div class="bg-white/90 p-8 rounded-3xl shadow-xl border-2 border-pink-300 relative">
+      <div class="text-4xl mb-2">💌</div>
+      <h3 class="text-2xl font-bold mb-2 text-pink-600">A Secret Note For You</h3>
+      <p class="text-sm text-pink-900/70 mb-6">Click below to open a little letter written especially for you!</p>
+
+      <button class="btn bg-pink-400 hover:bg-pink-500 text-white border-none rounded-full px-8 shadow-md" onclick="openLetterModal()">
+        Open Birthday Note 🎀
+      </button>
+
+      <dialog id="birthday_modal" class="modal modal-bottom sm:modal-middle">
+        <div class="modal-box bg-pink-50 border-4 border-pink-300 rounded-3xl">
+          <div class="text-center text-3xl mb-2">🐾 🎀 🐾</div>
+          <h3 class="font-bold text-2xl text-pink-600 mb-2">Dearest Samiya,</h3>
+          <p class="py-2 text-left leading-relaxed text-pink-900/80 font-medium">
+            Happy Birthday, my sweet girl! 🎉 I created this cute Hello Kitty corner just for you because you deserve all the sweetness in the world. 
+          </p>
+          <p class="py-2 text-left leading-relaxed text-pink-900/80 font-medium">
+            May your birthday be filled with endless smiles, warm hugs, and all the happiness you bring into my life. Thank you for being my favorite person and for always keeping me on my toes! 💖
+          </p>
+          
+          <div class="mt-4 pt-4 border-t border-pink-200 text-right">
+            <p class="text-sm text-pink-500 font-medium">Forever yours,</p>
+            <p class="font-extrabold text-pink-600 text-lg">Your "Bodmaish Beda" 😉</p>
+            <p class="text-xs text-pink-400 font-semibold">(Yeasin Hasan Sunny) ❤️</p>
+          </div>
+
+          <div class="modal-action">
+            <form method="dialog">
+              <button class="btn btn-sm btn-circle btn-ghost absolute right-3 top-3 text-pink-500">✕</button>
+              <button class="btn bg-pink-500 hover:bg-pink-600 text-white border-none rounded-full">Close 🎀</button>
+            </form>
+          </div>
+        </div>
+      </dialog>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer footer-center p-6 bg-white/80 text-pink-700 rounded-t-3xl mt-12 border-t border-pink-200">
+    <div>
+      <p class="font-medium">Crafted with ❤️ and 🎀 by Sunny for his Samiya</p>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // 1. Live Clock Timer
+    function updateLiveTimer() {
+      const now = new Date();
+      document.getElementById('live-timer').innerText = now.toLocaleTimeString();
+    }
+    setInterval(updateLiveTimer, 1000);
+    updateLiveTimer();
+
+    // 2. Birthday Countdown Timer (August 17th)
+    function updateCountdown() {
+      const now = new Date();
+      let currentYear = now.getFullYear();
+      let targetDate = new Date(`August 17, ${currentYear} 00:00:00`);
+
+      if (now > targetDate) {
+        targetDate = new Date(`August 17, ${currentYear + 1} 00:00:00`);
+      }
+
+      const diff = targetDate - now;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById('days').innerText = String(days).padStart(2, '0');
+      document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+      document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+      document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // 3. Hello Kitty Pink Confetti Trigger
+    function triggerKittyConfetti() {
+      confetti({
+        particleCount: 120,
+        spread: 80,
+        colors: ['#ffb6c1', '#ff69b4', '#ffffff', '#ff1493'],
+        origin: { y: 0.6 }
+      });
+    }
+
+    // 4. Web Audio API - Cute Chiptune Happy Birthday Tune
+    function playHappyBirthdayTune() {
+      const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      
+      // Notes & Frequencies (Hz)
+      const notes = {
+        'C4': 261.63, 'D4': 293.66, 'E4': 329.63, 'F4': 349.23,
+        'G4': 392.00, 'A4': 440.00, 'B4': 493.88, 'C5': 523.25
+      };
+
+      const melody = [
+        { note: 'G4', duration: 0.3 },
+        { note: 'G4', duration: 0.3 },
+        { note: 'A4', duration: 0.6 },
+        { note: 'G4', duration: 0.6 },
+        { note: 'C5', duration: 0.6 },
+        { note: 'B4', duration: 1.0 },
+
+        { note: 'G4', duration: 0.3 },
+        { note: 'G4', duration: 0.3 },
+        { note: 'A4', duration: 0.6 },
+        { note: 'G4', duration: 0.6 },
+        { note: 'D5', duration: 0.6 },
+        { note: 'C5', duration: 1.0 }
+      ];
+
+      let time = audioCtx.currentTime;
+
+      melody.forEach(item => {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+
+        osc.type = 'triangle'; // Soft cute sound
+        osc.frequency.setValueAtTime(notes[item.note] || 587.33, time);
+
+        gain.gain.setValueAtTime(0.2, time);
+        gain.gain.exponentialRampToValueAtTime(0.001, time + item.duration - 0.05);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc.start(time);
+        osc.stop(time + item.duration);
+
+        time += item.duration;
+      });
+    }
+
+    // Combined function to play music & trigger confetti
+    function triggerCelebration() {
+      playHappyBirthdayTune();
+      triggerKittyConfetti();
+    }
+
+    function openLetterModal() {
+      playHappyBirthdayTune();
+      birthday_modal.showModal();
+    }
+  </script>
+</body>
+</html>
